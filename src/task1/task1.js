@@ -1,7 +1,7 @@
-function func(n){
+function func(n) {
     let result = "";
-    for (let i = '#' ; i.length<n; i+='#'){
-         result+=i + '\n';
+    for (let i = '#'; i.length < n; i += '#') {
+        result += i + '\n';
     }
     return result;
 }
