@@ -1,0 +1,17 @@
+function reverseArray1(array) {
+    reversedArray = new Array(array.length);
+    for (let i = 0; i < array.length; i++) {
+        reversedArray[i] = array[array.length - i - 1];
+    }
+    return reversedArray;
+}
+
+function reverseArray2(array) {
+    let temp = 0;
+    for (let i = 0; i <= Math.floor((array.length) / 2); i++) {
+        temp = array[i];
+        array[i] = array[array.length - 1 - i];
+        array[array.length - 1 - i] = temp;
+    }
+    return array;
+}
