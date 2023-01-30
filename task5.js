@@ -9,7 +9,7 @@ function range(start, end, step) {
     for (let i = 0; i < range.length; i++, start += step) {
         range[i] = start;
         sum += range[i];
-    };
+    }
     return range;
 }
 
