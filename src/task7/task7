@@ -10,13 +10,13 @@ function arrayToList(arr) {
 function listToArray(list) {
     let array = [];
     for (; list; list = list.rest) {
-        array.push(list.value)
+        array.push(list.value);
     }
     return array;
 }
 
 function prepend(list, value) {
-    return list = { value: value, rest: list }
+    return list = { value: value, rest: list };
 }
 
 function nth(list, n) {
