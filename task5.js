@@ -1,14 +1,14 @@
-function range(start, end, step) {
-    if (step === undefined) {
-        step = 1;
-    }
-    let range = new Array(Math.round((Math.abs(start - end) + 1) / step)), sum = 0;
+function range(start, end, step = 1) {
+    let range = [];
     if (start > end) {
-        step = -step;
+        for (let i = start; i >= end; i += step) {
+            range.push(i);
+        }
     }
-    for (let i = 0; i < range.length; i++, start += step) {
-        range[i] = start;
-        sum += range[i];
+    else {
+        for (let i = start; i <= end; i += step) {
+            range.push(i);
+        }
     }
     return range;
 }
@@ -20,3 +20,10 @@ function sum(range) {
     };
     return sum;
 }
+
+console.log(range(1, 10));
+// → [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+console.log(range(5, 2, -1));
+// → [5, 4, 3, 2]
+console.log(sum(range(1, 10)));
+// → 55
