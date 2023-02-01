@@ -1,17 +1,27 @@
-function reverseArray1(array) {
-    reversedArray = new Array(array.length);
+function reverseArray(array) {
+    let reversedArray = [];
     for (let i = 0; i < array.length; i++) {
         reversedArray[i] = array[array.length - i - 1];
     }
     return reversedArray;
 }
 
-function reverseArray2(array) {
+function reverseArrayInPlace(array) {
     let temp = 0;
     for (let i = 0; i <= Math.floor((array.length) / 2); i++) {
-        temp = array[i];
-        array[i] = array[array.length - 1 - i];
-        array[array.length - 1 - i] = temp;
+        // temp = array[i];
+        // array[i] = array[array.length - 1 - i];
+        // array[array.length - 1 - i] = temp;
+        array.splice(array.length - i - 1, 1, array[i])
+        array.pop();
+
     }
     return array;
 }
+
+console.log(reverseArray(["A", "B", "C", "K", "F"]));
+// → ["F", "K", "C", "B", "A"]
+let arrayValue = [1, 2, 3, 4, 5];
+reverseArrayInPlace(arrayValue);
+console.log(arrayValue);
+// → [5, 4, 3, 2, 1]
