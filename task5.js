@@ -1,14 +1,7 @@
 function range(start, end, step = 1) {
     let range = [];
-    if (start > end) {
-        for (let i = start; i >= end; i += step) {
-            range.push(i);
-        }
-    }
-    else {
-        for (let i = start; i <= end; i += step) {
-            range.push(i);
-        }
+    for (let i = start; range.length <= Math.abs((start - end) / step); i += step) {
+        range.push(i);
     }
     return range;
 }
@@ -17,7 +10,7 @@ function sum(range) {
     let sum = 0;
     for (let i = 0; i < range.length; i++) {
         sum += range[i];
-    };
+    }
     return sum;
 }
 
