@@ -7,9 +7,8 @@ function reverseArray(array) {
 }
 
 function reverseArrayInPlace(array) {
-    for (let i = 0; i <= Math.floor((array.length) / 2); i++) {
-        array.splice(i, 0, array[array.length - 1])
-        array.pop();
+    for (let i = 0; i <= Math.ceil((array.length) / 2); i++) {
+        array.splice(i, 0, array.pop());
     }
     return array;
 }
