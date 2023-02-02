@@ -1,0 +1,21 @@
+function reverseArray(array) {
+    let reversedArray = [];
+    for (let i = 0; i < array.length; i++) {
+        reversedArray[i] = array[array.length - i - 1];
+    }
+    return reversedArray;
+}
+
+function reverseArrayInPlace(array) {
+    for (let i = 0; i <= Math.ceil((array.length) / 2); i++) {
+        array.splice(i, 0, array.pop());
+    }
+    return array;
+}
+
+console.log(reverseArray(["A", "B", "C", "K", "F"]));
+// → ["F", "K", "C", "B", "A"]
+let arrayValue = [1, 2, 3, 4, 5];
+reverseArrayInPlace(arrayValue);
+console.log(arrayValue);
+// → [5, 4, 3, 2, 1]
