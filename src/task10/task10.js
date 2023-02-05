@@ -1,15 +1,21 @@
-obj = JSON.PARSE(ANCESTRY_FILE)
+var obj = JSON.parse(ANCESTRY_FILE)
 
-function task10(array) {
-    let mothers = [];
-    for (item in array) {
-        let mother = item.mother;
-        console.log(mother);
-        if (array.find(item => item.name === mother)) {
-            mothers.push(1);
-        }
-    }
-    return mothers;
+function average(array) {
+    return array.reduce((a, b) => a + b) / array.length;
 }
 
-task10(obj)
+function mothersAvergeAge(array) {
+    let mothers = [];
+    for (let child of array) {
+        let motherName = child.mother;
+        for (let mother of array) {
+            if (mother.name === motherName) {
+                mothers.push(child.born - mother.born);
+                break;
+            }
+        }
+    }
+    return Math.round(average(mothers));
+}
+
+console.log(mothersAvergeAge(obj));
