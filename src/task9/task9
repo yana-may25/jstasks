@@ -3,7 +3,6 @@ function arrayFlattener(arrays) {
     return arrays.reduce((a, b) => a.concat(b), finalArray);
 }
 
-
 let arrays = [[1, 2, 3], [4, 5], [6]];
 console.log(arrayFlattener(arrays));
 // → [1, 2, 3, 4, 5, 6]
