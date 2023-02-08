@@ -2,7 +2,7 @@ var obj = JSON.parse(ANCESTRY_FILE);
 
 function groupBy(items, func) {
     let centuries = [];
-    for (let item of items) {
+    items.foreach(function (item) {
         let people = [];
         let century = func(item.died);
         let known = centuries.findIndex(c => c.century === century);
@@ -12,7 +12,7 @@ function groupBy(items, func) {
         } else {
             centuries[known].people.push(item);
         }
-    }
+    })
     return centuries;
 }
 
@@ -31,4 +31,4 @@ function averageExpectancyByCentury(items) {
     return res;
 }
 
-console.log(averageExpectancyByCentury(groupBy(obj, a => Math.ceil(a / 100))));
+console.log(averageExpectancyByCentury(groupBy(ancestry, a => Math.ceil(a / 100))));
