@@ -7,7 +7,7 @@ ancestry.forEach(function (person) {
 
 const average = array => array.reduce((a, b) => a + b) / array.length;
 
-const mothersAge1 = array => {
+const mothersAge = array => {
     let ageDiff = [];
     array.forEach(function (person) {
         if (byName[person.mother]) {
@@ -17,4 +17,4 @@ const mothersAge1 = array => {
     return ageDiff;
 }
 
-console.log(average(mothersAge1(ancestry)));
+console.log(average(mothersAge(ancestry)));
