@@ -1,29 +1,15 @@
-var obj = JSON.parse(ANCESTRY_FILE)
+var ancestry = JSON.parse(ANCESTRY_FILE)
 
 const average = array => array.reduce((a, b) => a + b) / array.length;
 
-var byName = {};
-
-ancestry.forEach(function (person) {
-    byName[person.name] = person;
-});
-89
-console.log(byName[" Philibert Haverbeke "]);
-// → { name : " Philibert Haverbeke " , ...}
-
-
-function mothersAvergeAge(array) {
-    let mothers = [];
-    for (let child of array) {
-        let motherName = child.mother;
-        for (let mother of array) {
-            if (mother.name === motherName) {
-                mothers.push(child.born - mother.born);
-                break;
-            }
+function mothersAge(array) {
+    let ageDiff = [];
+    array.forEach(function (person) {
+        if (byName[person.mother]) {
+            ageDiff.push(person.born - byName[person.mother].born);
         }
-    }
-    return Math.round(average(mothers));
+    });
+    return ageDiff;
 }
 
-console.log(mothersAvergeAge(obj));
+console.log(average(mothersAge(ancestry)));
