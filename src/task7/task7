@@ -14,10 +14,7 @@ function listToArray(list) {
     return array;
 }
 
-function prepend(element, list) {
-    let newList = { value: element, rest: list };
-    return newList;
-}
+const prepend = (element, list) => ({ value: element, rest: list });
 
 function nth(list, n) {
     if (list) {
