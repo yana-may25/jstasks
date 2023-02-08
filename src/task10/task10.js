@@ -1,8 +1,16 @@
 var obj = JSON.parse(ANCESTRY_FILE)
 
-function average(array) {
-    return array.reduce((a, b) => a + b) / array.length;
-}
+const average = array => array.reduce((a, b) => a + b) / array.length;
+
+var byName = {};
+
+ancestry.forEach(function (person) {
+    byName[person.name] = person;
+});
+89
+console.log(byName[" Philibert Haverbeke "]);
+// → { name : " Philibert Haverbeke " , ...}
+
 
 function mothersAvergeAge(array) {
     let mothers = [];
