@@ -1,8 +1,10 @@
-var obj = JSON.parse(ANCESTRY_FILE);
+var ancestry = JSON.parse(ANCESTRY_FILE);
+
+const average = array => array.reduce((a, b) => a + b) / array.length;
 
 function groupBy(items, func) {
     let centuries = [];
-    items.foreach(function (item) {
+    items.map(function (item) {
         let people = [];
         let century = func(item.died);
         let known = centuries.findIndex(c => c.century === century);
@@ -16,18 +18,17 @@ function groupBy(items, func) {
     return centuries;
 }
 
-console.log(groupBy(obj, a => Math.ceil(a / 100)));
+console.log(groupBy(ancestry, a => Math.ceil(a / 100)));
 
 function averageExpectancyByCentury(items) {
     let res = [];
-    for (let item of items) {
-        let ageSum = 0;
-        for (let person of item.people) {
-            ageSum += person.died - person.born;
-        }
-        res.push({ century: item.century, averageExpectancy: Math.round(ageSum / item.people.length) });
-        console.log(item.people.length);
-    }
+    items.forEach(function (item) {
+        let age = [];
+        item.people.forEach(function (person) {
+            age.push(person.died - person.born);
+        })
+        res.push({ century: item.century, averageAge: Math.round(average(age)) });
+    })
     return res;
 }
 
