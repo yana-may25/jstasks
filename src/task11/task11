@@ -23,7 +23,7 @@ function groupBy(items, func) {
     return centuries;
 }
 
-const averageExpByCent1 = (array) => {
+const averageExpByCent = (array) => {
     return array.map(cent => {
         return (cent.century + 'th: ' +
             average(cent.people.map(person => {
@@ -32,4 +32,4 @@ const averageExpByCent1 = (array) => {
         )
     })
 }
-console.log(averageExpByCent1(groupBy(ancestry, a => Math.ceil(a / 100))))
+console.log(averageExpByCent(groupBy(ancestry, a => Math.ceil(a / 100))))
