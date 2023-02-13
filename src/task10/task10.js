@@ -1,20 +1,19 @@
 var ancestry = JSON.parse(ANCESTRY_FILE)
 
 var byName = {};
-ancestry.forEach(function (person) {
+ancestry.forEach(person => {
     byName[person.name] = person;
 });
 
 const average = array => array.reduce((a, b) => a + b) / array.length;
 
-const mothersAge = array => {
-    let ageDiff = [];
-    array.forEach(function (person) {
-        if (byName[person.mother]) {
-            ageDiff.push(person.born - byName[person.mother].born);
-        }
+const MotherChildAgeDiff = () => {
+    return ancestry.filter(person => {
+        return byName[person.mother] != null;
+    }).map(person => {
+        return person.born - byName[person.mother].born;
     });
-    return ageDiff;
 }
+console.log(Math.round(average(MotherChildAgeDiff())));
+// → 31
 
-console.log(average(mothersAge(ancestry)));
