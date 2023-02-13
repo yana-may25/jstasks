@@ -4,8 +4,11 @@ class ArraySeq {
         this.content = array;
     }
     next() {
-        if (this.x == this.content.length - 1) return true;
-        this.x++;
+        if (this.x == this.content.length - 1) {
+            return true;
+        } else {
+            this.x++;
+        }
         return false;
     }
     current() {
