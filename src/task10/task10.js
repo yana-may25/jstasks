@@ -7,13 +7,13 @@ ancestry.forEach(person => {
 
 const average = array => array.reduce((a, b) => a + b) / array.length;
 
-const MotherChildAgeDiff = (ancestry) => {
-    return ancestry.filter(person => {
+const MotherChildAgeDiff = ancestry =>
+    ancestry.filter(person => {
         return byName[person.mother] != null;
     }).map(person => {
         return person.born - byName[person.mother].born;
     });
-}
+
 console.log(Math.round(average(MotherChildAgeDiff(ancestry))));
 // → 31
 
