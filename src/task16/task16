@@ -1,0 +1,29 @@
+class MultiplicatorUnitFailure extends Error { }
+class InvalidInput extends Error { }
+
+var primitiveMultiply = (a, b) => {
+    if (Math.random() < 0.2) {
+        return a * b;
+    } else {
+        throw new MultiplicatorUnitFailure("Klunk");
+    }
+}
+
+var reliableMultiply = (a, b) => {
+    if (typeof (a) != 'number' || typeof (b) != "number") {
+        throw new InvalidInput("Both input values should be numbers");
+    }
+    try {
+        return primitiveMultiply(a, b);
+    } catch (e) {
+        if (e instanceof MultiplicatorUnitFailure) {
+            throw new MultiplicatorUnitFailure("random was >= 0.2");
+        } else {
+            throw e;
+        }
+    }
+}
+
+console.log(reliableMultiply('a', 8));
+console.log(reliableMultiply(8, 8));
+// → 64
