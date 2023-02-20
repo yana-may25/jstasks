@@ -11,8 +11,11 @@ const box = {
 
 const withBoxUnlocked = body => {
     let isLocked = box.locked;
-    box.unlock();
+    if (isLocked) {
+        box.unlock();
+    }
     try {
+        console.log(box.content);
         body();
     } finally {
         if (isLocked) {
@@ -21,16 +24,21 @@ const withBoxUnlocked = body => {
     }
 }
 
-withBoxUnlocked(() =>
-    box.content.push("gold piece"));
-
-try {
-    withBoxUnlocked(() => {
-        throw new Error("Pirates on the horizon! Abort!");
-    });
-} catch (e) {
-    console.log("Error raised:", e);
+////
+const test = () => {
+    console.log("box.locked =", box.locked);
+    withBoxUnlocked(() =>
+        box.content.push("gold piece"));
+    console.log("box.locked =", box.locked);
+    box.unlock()
+    try {
+        withBoxUnlocked(() => {
+            throw new Error("Pirates on the horizon! Abort!");
+        });
+    } catch (e) {
+        console.log("Error raised:", e);
+    }
+    console.log("box.locked =", box.locked);
 }
 
-console.log(box.locked);
-// → true
+test();
