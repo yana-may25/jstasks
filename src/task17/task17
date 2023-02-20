@@ -1,5 +1,3 @@
-console.clear();
-
 const box = {
     locked: true,
     unlock() { this.locked = false; },
@@ -11,28 +9,28 @@ const box = {
     }
 };
 
-function withBoxUnlocked(body) {
-    let wasLocked = box.locked;
+const withBoxUnlocked = body => {
+    let isLocked = box.locked;
     box.unlock();
     try {
         body();
     } finally {
-        if (wasLocked) {
+        if (isLocked) {
             box.lock();
         }
     }
 }
 
-withBoxUnlocked(function () {
-    box.content.push("gold piece");
-});
+withBoxUnlocked(() =>
+    box.content.push("gold piece"));
 
 try {
-    withBoxUnlocked(function () {
+    withBoxUnlocked(() => {
         throw new Error("Pirates on the horizon! Abort!");
     });
 } catch (e) {
     console.log("Error raised:", e);
 }
+
 console.log(box.locked);
 // → true
