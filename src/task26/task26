@@ -11,15 +11,14 @@
   }
 </style>
 <script> 
-    let scheduled = null;
-   let trail = [];
+  let scheduled = null;
+  let trail = [];
   window.addEventListener("mousemove", event => {
-    scheduled = event;
     let dot = document.createElement("div");
     dot.className = "trail";
     dot.style.left = (event.pageX - 1) + "px";
     dot.style.top = (event.pageY - 1) + "px";
-    if (trail.length<10){
+    if (trail.length < 10){
     document.body.appendChild(dot);
       trail.push(dot)
     }
