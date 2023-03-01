@@ -3,12 +3,6 @@
     height: 200px;
     background: beige;
   }
-  .dot {
-    height: 8px; width: 8px;
-    border-radius: 4px; /* rounds corners */
-    background: blue;
-    position: absolute;
-  }
     .trail { /* className for the trail elements */
     position: absolute;
     height: 6px; width: 6px;
@@ -18,18 +12,26 @@
 </style>
 <script> 
     let scheduled = null;
-    window.addEventListener("mousemove", event => {
-     if (!scheduled) {
-      setTimeout(() => {
-        document.body.textContent = ` `;
-        scheduled = null;
-      }, 100);
-    }
+   let trail = [];
+  window.addEventListener("mousemove", event => {
+   
     scheduled = event;
     let dot = document.createElement("div");
-    dot.className = "dot";
-    dot.style.left = (event.pageX - 4) + "px";
-    dot.style.top = (event.pageY - 4) + "px";
+    dot.className = "trail";
+    dot.style.left = (event.pageX - 1) + "px";
+    dot.style.top = (event.pageY - 1) + "px";
+    
+    if (trail.length<10){
     document.body.appendChild(dot);
+      trail.push(dot)
+    }
+    else {
+      trail[trail.length - 10].style.left = (event.pageX - 4) + "px";
+      trail[trail.length - 10].style.top = (event.pageY - 4) + "px";
+      //trail.pop();
+      //document.body.appendChild(trail[trail.length - 9]);
+      trail.push( trail[trail.length - 10])
+      console.log(trail.length)  
+    }
   });
 </script>
