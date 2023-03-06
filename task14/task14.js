@@ -2,6 +2,15 @@ function TextCell(text) {
     this.text = text.split("\n");
 }
 
+TextCell.prototype.draw = function (width, height) {
+    var result = [];
+    for (var i = 0; i < height; i++) {
+        var line = this.text[i] || "";
+        result.push(line + repeat(" ", width - line.length));
+    }
+    return result;
+};
+
 TextCell.prototype.minWidth = function () {
     return this.text.reduce(function (width, line) {
         return Math.max(width, line.length);
@@ -24,9 +33,19 @@ StretchCell.prototype.minWidth = function () { return this.width > this.inner.mi
 
 StretchCell.prototype.minHeight = function () { return this.height > this.inner.minHeight() ? this.height : this.inner.minHeight() }
 
+StretchCell.prototype.draw = function () {
+    return this.inner.draw(this.minWidth(), this.minHeight())
+};
+
 textCell = new TextCell("sadf\nkldasdf")
 console.log(textCell.minHeight(), textCell.minWidth())
 // 2 7
+
 stretchCell = new StretchCell(textCell, 3, 4)
 console.log(stretchCell.minHeight(), stretchCell.minWidth())
 //4 7
+
+console.log(textCell.draw(textCell.minWidth(), textCell.minHeight()))
+
+console.log(stretchCell.draw())
+
