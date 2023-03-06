@@ -2,7 +2,7 @@ const box = {
     locked: true,
     unlock() { this.locked = false; },
     lock() { this.locked = true; },
-    _content: [1, 2, 3],
+    _content: [],
     get content() {
         if (this.locked) throw new Error("Locked!");
         return this._content;
@@ -10,21 +10,20 @@ const box = {
 };
 
 const withBoxUnlocked = body => {
-    let isLocked = box.locked;
-    if (isLocked) {
+    let wasLocked = box.locked;
+    if (wasLocked) {
         box.unlock();
     }
     try {
         console.log(box.content);
         body();
     } finally {
-        if (isLocked) {
+        if (wasLocked) {
             box.lock();
         }
     }
 }
 
-////
 const test = () => {
     console.log("box.locked =", box.locked);
     withBoxUnlocked(() =>
