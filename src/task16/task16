@@ -2,22 +2,22 @@ class MultiplicatorUnitFailure extends Error { }
 class InvalidInput extends Error { }
 
 var primitiveMultiply = (a, b) => {
-    if (Math.random() < 0.2) {
+    if (Math.random() < 0.5) {
         return a * b;
     } else {
-        throw new MultiplicatorUnitFailure("Klunk");
+        throw new MultiplicatorUnitFailure;
     }
 }
 
 var reliableMultiply = (a, b) => {
-    if (typeof (a) != 'number' || typeof (b) != "number") {
+    if (typeof (a) !== 'number' || typeof (b) !== "number") {
         throw new InvalidInput("Both input values should be numbers");
     }
     try {
         return primitiveMultiply(a, b);
     } catch (e) {
         if (e instanceof MultiplicatorUnitFailure) {
-            throw new MultiplicatorUnitFailure("random was >= 0.2");
+            throw new MultiplicatorUnitFailure("random was >= 0.5");
         } else {
             throw e;
         }
