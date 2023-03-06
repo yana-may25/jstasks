@@ -2,7 +2,7 @@ var ancestry = JSON.parse(ANCESTRY_FILE);
 
 const average = array => array.reduce((a, b) => a + b) / array.length;
 
-var groupBy = (items, func) => // It behaves strangely when I'm trying to make it =>. Of course I might be doing sth wrong
+var groupBy = (items, func) =>
     items.reduce(function (rv, x) {
         (rv[func(x)] = rv[func(x)] || []).push(x);
         return rv;
@@ -20,4 +20,4 @@ const averageExpByCent = array =>
         res != null
     );
 
-console.log(averageExpByCent(groupBy2(ancestry, a => Math.ceil(a.died / 100))))
+console.log(averageExpByCent(groupBy(ancestry, a => Math.ceil(a.died / 100))))
