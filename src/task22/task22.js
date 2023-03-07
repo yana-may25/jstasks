@@ -1,6 +1,7 @@
 import { MOUNTAINS } from 'ext\mountains.js'
 
-function addTable(array) {
+export function addTable() {
+    let array = MOUNTAINS;
     var myTableDiv = document.getElementById("mountains");
     var table = document.createElement('table');
     var tr = document.createElement('tr');
@@ -23,5 +24,3 @@ function addTable(array) {
     }
     myTableDiv.appendChild(table);
 }
-
-document.getElementById("mountains").innerHTML = addTable(MOUNTAINS);
