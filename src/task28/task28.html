@@ -24,11 +24,13 @@
             centerX -= 5;
         }
         dist += 5;
-        cx.clearRect(startRecX, startRecY, endRecX, endRecY);
+
+        cx.fillStyle = "black";
+        cx.fillRect(startRecX, startRecY, endRecX, endRecY);
         cx.beginPath();
         cx.arc(centerX, centerY, radius, 0, 7);
         cx.stroke();
-        cx.strokeStyle = "black";
-        cx.fill();
+        cx.fillStyle = "yellow";
+        cx.fill()
     }
 </script>
