@@ -1,0 +1,33 @@
+<canvas width="400" height="400"></canvas>
+<script>
+    let cx = document.querySelector("canvas").getContext("2d");
+    cx.strokeStyle = "black";
+    cx.strokeRect(5, 5, 305, 100);
+    let x = 25;
+    y = 25;
+    cx.arc(x, 55, 20, 0, 7);
+    cx.stroke();
+    let lastTime = null;
+    function frame(time) {
+        if (lastTime != null) {
+            updateAnimation(Math.min(100, time - lastTime) / 1000);
+        }
+        lastTime = time;
+        requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+    function updateAnimation(step) {
+        if (y <= 285 || (Math.floor(y / 285)) % 2 == 0) {
+            x += 5;
+            y += 5;
+        }
+        else {
+            x -= 5;
+            y += 5;
+        }
+        cx.clearRect(5, 5, 305, 100);
+        cx.beginPath();
+        cx.arc(x, 55, 20, 0, 7);
+        cx.stroke();
+    }
+</script>
