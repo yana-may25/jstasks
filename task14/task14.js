@@ -34,7 +34,7 @@ StretchCell.prototype.minWidth = function () { return this.width > this.inner.mi
 StretchCell.prototype.minHeight = function () { return this.height > this.inner.minHeight() ? this.height : this.inner.minHeight() }
 
 StretchCell.prototype.draw = function () {
-    return this.inner.draw(this.minWidth(), this.minHeight())
+    return this.inner.draw(width, height)
 };
 
 textCell = new TextCell("sadf\nkldasdf")
