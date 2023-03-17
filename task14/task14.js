@@ -1,3 +1,10 @@
+function repeat(string, times) {
+    var result = "";
+    for (var i = 0; i < times; i++)
+        result += string;
+    return result;
+}
+
 function TextCell(text) {
     this.text = text.split("\n");
 }
@@ -29,12 +36,12 @@ function StretchCell(inner, width, height) {
     this.height = height;
 }
 
-StretchCell.prototype.minWidth = function () { return this.width > this.inner.minWidth() ? this.width : this.inner.minWidth() }
+StretchCell.prototype.minWidth = function () { return Math.max(this.width, this.inner.minWidth()) }
 
-StretchCell.prototype.minHeight = function () { return this.height > this.inner.minHeight() ? this.height : this.inner.minHeight() }
+StretchCell.prototype.minHeight = function () { return Math.max(this.height, this.inner.minHeight()) }
 
 StretchCell.prototype.draw = function () {
-    return this.inner.draw(width, height)
+    return this.inner.draw(this.width, this.height)
 };
 
 textCell = new TextCell("sadf\nkldasdf")
