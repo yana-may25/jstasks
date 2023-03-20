@@ -2,6 +2,7 @@ function ArraySeq(array) {
     this.x = -1;
     this.content = array;
 }
+
 ArraySeq.prototype.next = function () {
     if (this.x == this.content.length - 1) {
         return true;
@@ -10,6 +11,7 @@ ArraySeq.prototype.next = function () {
     }
     return false;
 }
+
 ArraySeq.prototype.current = function () {
     return this.content[this.x];
 }
