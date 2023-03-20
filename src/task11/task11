@@ -2,22 +2,20 @@ var ancestry = JSON.parse(ANCESTRY_FILE);
 
 const average = array => array.reduce((a, b) => a + b) / array.length;
 
-var groupBy = (items, func) =>
+var groupBy = (items) =>
     items.reduce(function (rv, x) {
-        (rv[func(x)] = rv[func(x)] || []).push(x);
+        (rv[Math.ceil(x.died / 100)] = rv[Math.ceil(x.died / 100)] || []).push(x);
         return rv;
-    }, []);
+    }, {});
 
-console.log(groupBy(ancestry, a => Math.ceil(a.died / 100)))
+console.log(groupBy(ancestry))
 
-const averageExpByCent = array =>
-    array.map(cent =>
-        array.indexOf(cent) + 'th: ' +
-        average(cent.map(person =>
+const averageExpByCent = objects => {
+    Object.entries(objects).forEach(([key, value]) => {
+        console.log(`${key} -> ${Math.round(average(value.map(person =>
             person.died - person.born
-        ))
-    ).filter(res =>
-        res != null
-    );
+        )))}`)
+    })
+}
 
-console.log(averageExpByCent(groupBy(ancestry, a => Math.ceil(a.died / 100))))
+console.log(averageExpByCent(groupBy(ancestry)))
