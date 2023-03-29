@@ -1,8 +1,9 @@
+var cat = document.getElementById("cat");
+var hat = document.getElementById("hat");
+var angle = 0;
+var lastTime = null;
+
 function animate(time) {
-    let cat = document.getElementById("cat");
-    let hat = document.getElementById("hat");
-    let angle = 0;
-    let lastTime = null;
     if (lastTime != null) angle += (time - lastTime) * 0.001;
     lastTime = time;
     cat.style.top = (Math.sin(angle) + 100) + "px";
