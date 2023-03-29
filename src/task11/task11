@@ -1,0 +1,21 @@
+var ancestry = JSON.parse(ANCESTRY_FILE);
+
+const average = array => array.reduce((a, b) => a + b) / array.length;
+
+var groupBy = (items) =>
+    items.reduce(function (rv, x) {
+        (rv[Math.ceil(x.died / 100)] = rv[Math.ceil(x.died / 100)] || []).push(x);
+        return rv;
+    }, {});
+
+console.log(groupBy(ancestry))
+
+const averageExpByCent = objects => {
+    Object.entries(objects).forEach(([key, value]) => {
+        console.log(`${key} -> ${Math.round(average(value.map(person =>
+            person.died - person.born
+        )))}`)
+    })
+}
+
+console.log(averageExpByCent(groupBy(ancestry)))
