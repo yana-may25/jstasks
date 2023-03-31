@@ -1,9 +1,10 @@
 function insideTheBox() {
-    let cx = document.querySelector("canvas").getContext("2d");
-    let startRecX = 5, startRecY = 5, endRecX = 305, endRecY = 100;
+    var cx = document.querySelector("canvas").getContext("2d");
+    let startRecX = 5, startRecY = 5, endRecX = 305, endRecY = 305;
+    let stepX = 5, stepY = 3;
     cx.strokeRect(startRecX, startRecY, endRecX, endRecY);
-    let radius = 20, centerX = radius + startRecX, centerY = 55;
-    dist = 0;
+    let radius = 10, centerX = radius + startRecX, centerY = radius + startRecY,
+        distX = 0, distY = 0;
     cx.arc(centerX, centerY, radius, 0, 7);
     cx.stroke();
     let lastTime = null;
@@ -16,13 +17,28 @@ function insideTheBox() {
     }
     requestAnimationFrame(frame);
     function updateAnimation(step) {
-        if (dist < endRecX - 2 * radius || (Math.floor(dist / (endRecX - 2 * radius))) % 2 == 0) {
-            centerX += 5;
+        if (
+            distX < endRecX - 2 * radius || (Math.floor(distX / (endRecX - 2 * radius) % 2)) == 0
+        ) {
+            if (distY < endRecY - 2 * radius || (Math.floor(distY / (endRecY - 2 * radius) % 2)) == 0) {
+                centerY += stepY;
+            }
+            else {
+                centerY -= stepY;
+            }
+            centerX += stepX;
         }
         else {
-            centerX -= 5;
+            if (distY < endRecY - 2 * radius || (Math.floor(distY / (endRecY - 2 * radius) % 2)) == 0) {
+                centerY += stepY;
+            }
+            else {
+                centerY -= stepY;
+            }
+            centerX -= stepX;
         }
-        dist += 5;
+        distY += stepY;
+        distX += stepX;
         cx.fillStyle = "black";
         cx.fillRect(startRecX, startRecY, endRecX, endRecY);
         cx.beginPath();
