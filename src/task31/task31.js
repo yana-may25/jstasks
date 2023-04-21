@@ -6,12 +6,14 @@ function contentNegotiation() {
         'application/json',
         'application/rainbow+unicorns'
     ];
+    const box = document.getElementById('box');
 
     async function getResponsesForMediaType(url, type) {
         let res = await fetch(url, { headers: { 'accept': type } });
         res = await res.text();
-        console.log(`\n type: ${type}\n\n`, res);
+        r = `\n type: ${type}\n${r}\n`;
+        box.insertAdjacentText('beforeend', r);
+        console.log(r);
     };
-
     mediaTypes.forEach(type => getResponsesForMediaType(url, type));
 }
