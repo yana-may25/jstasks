@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Page Title</title>
+</head>
+
+<body>
+  <textarea id="code">return "hi";</textarea>
+  <button id="button">Run</button>
+  <pre id="output"></pre>
+
+  <script>
+    let button = document.getElementById('button');
+    let code = document.getElementById('code');
+    let output = document.getElementById('output');
+    button.addEventListener('click', () => {
+      let result;
+      try {
+        let fn = new Function(code.value);
+        result = fn.call().toString();
+      }
+      catch (e) {
+        result = e.message;
+      }
+      finally {
+        output.textContent = result;
+      }
+    });  
+  </script>
+</body>
+
+</html>
